@@ -10,5 +10,10 @@ client = SupabaseConnection().client
 funcionario_dao = FuncionarioDAO(client)
 
 @app.route("/")
-def hello_world():
+def index():
     return render_template("index.html", title="3INF1M", app_name="Meu Flask App", funcionarios=funcionario_dao.read_all())
+
+@app.route("/funcionario/<string:pk>/<int:id>")
+def details(pk, id):
+    funcionario = funcionario_dao.read(pk, id)
+    return render_template("details.html", funcionario=funcionario)

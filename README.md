@@ -34,7 +34,7 @@ python3 -m venv .venv
 source /workspaces/pabd2025_flask_aula/.venv/bin/activate
 ```
 
-## 2.1 Se usado template do codespaces
+## 2.2 Se usado template do codespaces
 ```bash
 source /workspaces/codespaces-flask/.venv/bin/activate
 ```
