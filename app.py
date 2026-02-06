@@ -28,6 +28,38 @@ def format_cpf(cpf):
         return cpf
     return f"{cpf[:3]}.{cpf[3:6]}.{cpf[6:9]}-{cpf[9:11]}"
 
+# Filtro personalizado para formatar data/hora em português
+@app.template_filter('format_datetime_br')
+def format_datetime_br(value):
+    """Formata datetime para o padrão brasileiro DD/MM/YYYY HH:MM:SS"""
+    if not value:
+        return ""
+    if isinstance(value, str):
+        try:
+            # Se for string ISO, converte para datetime
+            value = datetime.fromisoformat(value.replace('Z', '+00:00'))
+        except:
+            return value
+    if isinstance(value, datetime):
+        return value.strftime('%d/%m/%Y %H:%M:%S')
+    return value
+
+# Filtro personalizado para formatar apenas data em português
+@app.template_filter('format_date_br')
+def format_date_br(value):
+    """Formata data para o padrão brasileiro DD/MM/YYYY"""
+    if not value:
+        return ""
+    if isinstance(value, str):
+        try:
+            # Se for string ISO, converte para datetime
+            value = datetime.fromisoformat(value.replace('Z', '+00:00'))
+        except:
+            return value
+    if isinstance(value, datetime):
+        return value.strftime('%d/%m/%Y')
+    return value
+
 @app.route("/funcionario/<string:pk>/<int:id>")
 def details(pk, id):
     funcionario = funcionario_dao.read(pk, id)
@@ -39,12 +71,16 @@ def create():
     try:
         if request.method == "POST":
             # 1. Criar objeto novo
+            # Converter salário aceita tanto ponto quanto vírgula como separador decimal
+            salario_str = request.form.get("salario", "1518.01")
+            salario_str = salario_str.replace(',', '.')
+            
             funcionario_novo = Funcionario(
                 _cpf = request.form["cpf"],
                 _pnome = request.form["pnome"],
                 _unome = request.form["unome"],
                 _data_nasc = request.form["data_nasc"],
-                _salario = request.form["salario"],
+                _salario = float(salario_str),
             )
             
             # 2. Atualizar no banco
@@ -86,7 +122,11 @@ def update(pk):
             # Salário
             salario = funcionario_atual.salario
             try:
-                salario = float(dados.get('salario', salario))
+                # Aceita tanto ponto quanto vírgula como separador decimal
+                salario_str = dados.get('salario', salario)
+                if isinstance(salario_str, str):
+                    salario_str = salario_str.replace(',', '.')
+                salario = float(salario_str)
             except:
                 pass
             

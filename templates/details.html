@@ -87,8 +87,8 @@
                     <div class="separador"></div>
                     
                     <div class="info-adicional">
-                        <p><strong>Criado em:</strong> {{ funcionario.created_at }}</p>
-                        <p><strong>Última atualização:</strong> {{ funcionario.updated_at }}</p>
+                        <p><strong>Criado em:</strong> {{ funcionario.created_at|format_datetime_br }}</p>
+                        <p><strong>Última atualização:</strong> {{ funcionario.updated_at|format_datetime_br }}</p>
                     </div>
                 </div>
                 
