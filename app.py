@@ -81,6 +81,7 @@ def create():
                 _unome = request.form["unome"],
                 _data_nasc = request.form["data_nasc"],
                 _salario = float(salario_str),
+                _sexo = request.form.get("sexo", "F"),
             )
             
             # atualizar no banco de dados

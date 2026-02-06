@@ -54,11 +54,30 @@ body {
     color: #2c3e50;
 }
 
+.grupo-campo select {
+    width: 100%;
+    padding: 14px 16px;
+    border: 2px solid #e0e6ed;
+    border-radius: 8px;
+    font-size: 1rem;
+    background: #f8f9fc;
+    transition: all 0.3s ease;
+    color: #2c3e50;
+    cursor: pointer;
+}
+
 .grupo-campo input::placeholder {
     color: #b0bcc4;
 }
 
 .grupo-campo input:focus {
+    outline: none;
+    border-color: #667eea;
+    background: white;
+    box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+}
+
+.grupo-campo select:focus {
     outline: none;
     border-color: #667eea;
     background: white;
