@@ -3,32 +3,32 @@
 <head>
     <meta charset="UTF-8">
     <title>Confirmar Exclusão</title>
-    <!-- CSS separado -->
+    <!-- arquivo css separado -->
     <link rel="stylesheet" href="{{ url_for('static', filename='delete.css') }}">
 </head>
 <body>
-    <!-- Container principal -->
+    <!-- container principal -->
     <div class="container">
         
-        <!-- Cartão com conteúdo -->
+        <!-- cartão com conteúdo -->
         <div class="card">
             
-            <!-- CABEÇALHO -->
+            <!-- cabeçalho da página -->
             <header class="cabecalho">
                 <h1>Confirmar Exclusão</h1>
                 <p class="subtitulo">Ação irreversível</p>
             </header>
             
-            <!-- CORPO DA PÁGINA -->
+            <!-- corpo da página -->
             <main class="conteudo">
                 
-                <!-- Alerta de atenção -->
+                <!-- alerta de atenção -->
                 <div class="alerta alerta-aviso">
                     <h2>Importante</h2>
                     <p>Você está prestes a excluir um funcionário permanentemente.</p>
                 </div>
 
-                <!-- Informações do funcionário -->
+                <!-- informações do funcionário -->
                 <div class="informacoes">
                     <h3>Funcionário a ser excluído</h3>
                     
@@ -61,15 +61,15 @@
                     </div>
                 </div>
 
-                <!-- Alerta final -->
+                <!-- alerta final -->
                 <div class="alerta alerta-perigo">
                     <h2>Esta ação não pode ser desfeita!</h2>
                     <p>Todos os dados deste funcionário serão permanentemente removidos.</p>
                 </div>
 
-                <!-- Formulário de confirmação -->
+                <!-- formulário de confirmação -->
                 <form method="POST" action="{{ url_for('delete', pk=funcionario.cpf) }}" class="formulario">
-                    <!-- Checkbox de confirmação -->
+                    <!-- checkbox de confirmação -->
                     <div class="confirmacao">
                         <input type="checkbox" id="confirmCheckbox" required class="checkbox">
                         <label for="confirmCheckbox" class="checkbox-label">
@@ -77,7 +77,7 @@
                         </label>
                     </div>
                     
-                    <!-- Botões de ação -->
+                    <!-- botões de ação -->
                     <div class="botoes">
                         <a href="{{ url_for('index') }}" class="botao botao-cancelar">
                             Cancelar
@@ -90,7 +90,7 @@
                 </form>
             </main>
             
-            <!-- RODAPÉ -->
+            <!-- rodapé da página -->
             <footer class="rodape">
                 <p><strong>Observação:</strong> Use o botão "Voltar" do navegador para retornar.</p>
             </footer>

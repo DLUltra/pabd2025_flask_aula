@@ -3,23 +3,23 @@
 <head>
     <meta charset="UTF-8">
     <title>Novo Funcionário</title>
-    <!-- ESTILIZAÇÃO-->
+    <!-- estilização da página -->
     <link rel="stylesheet" href="{{ url_for('static', filename='create.css') }}">
-    <!-- Ícones do Font Awesome -->
+    <!-- ícones do font awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
-    <!-- CONTAINER PRINCIPAL -->
+    <!-- container principal -->
     <div class="container">
-        <!-- TÍTULO DA PÁGINA -->
+        <!-- título da página -->
         <h1 class="titulo">
             Cadastrar Novo Funcionário
         </h1>
         
-        <!-- FORMULÁRIO DE CADASTRO -->
+        <!-- formulário de cadastro -->
         <form method="POST" action="{{ url_for('create') }}" class="formulario">
             
-            <!-- CAMPO: CPF -->
+            <!-- campo: entrada de cpf -->
             <div class="grupo-campo">
                 <label for="cpf">
                     CPF (11 números):
@@ -35,7 +35,7 @@
                 <small class="texto-ajuda">Apenas números, sem pontos ou traços</small>
             </div>
             
-            <!-- CAMPO: NOME -->
+            <!-- campo: entrada de nome -->
             <div class="grupo-campo">
                 <label for="pnome">
                     Nome:
@@ -49,7 +49,7 @@
                        title="Digite o primeiro nome do funcionário">
             </div>
             
-            <!-- CAMPO: SOBRENOME -->
+            <!-- campo: entrada de sobrenome -->
             <div class="grupo-campo">
                 <label for="unome">
                     Sobrenome:
@@ -63,7 +63,7 @@
                        title="Digite o sobrenome do funcionário">
             </div>
             
-            <!-- CAMPO: DATA DE NASCIMENTO -->
+            <!-- campo: entrada de data de nascimento -->
             <div class="grupo-campo">
                 <label for="data_nasc">
                     Data de Nascimento:
@@ -75,7 +75,7 @@
                        title="Selecione a data de nascimento">
             </div>
             
-            <!-- CAMPO: SALÁRIO -->
+            <!-- campo: entrada de salário -->
             <div class="grupo-campo">
                 <label for="salario">
                     Salário R$:
@@ -90,14 +90,14 @@
                 <small class="texto-ajuda">Use ponto para casas decimais (ex: 20000.00)</small>
             </div>
             
-            <!-- GRUPO DE BOTÕES -->
+            <!-- grupo de botões -->
             <div class="grupo-botoes">
-                <!-- BOTÃO: CADASTRAR -->
+                <!-- botão: cadastrar funcionário -->
                 <button type="submit" class="botao botao-primario">
                     Cadastrar
                 </button>
                 
-                <!-- BOTÃO: CANCELAR -->
+                <!-- botão: cancelar operação -->
                 <a href="{{ url_for('index') }}" class="botao botao-secundario">
                     Cancelar
                 </a>

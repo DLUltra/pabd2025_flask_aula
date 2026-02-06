@@ -1,14 +1,14 @@
 '''
-  *** BaseDAO ***
-  Classe abstrata base para DAOs (Data Access Objects)
-  Operações CRUD genéricas
+  *** base dao ***
+  classe abstrata para data access objects
+  operações crud genéricas
 '''
 
 from abc import ABC, abstractmethod
 from typing import List, Optional, TypeVar, Generic
 from supabase import Client
 
-# TypeVar - tornar a classe genérica
+# variável de tipo para tornar a classe genérica
 T = TypeVar('T')
 
 class BaseDAO(ABC, Generic[T]):
@@ -31,13 +31,13 @@ class BaseDAO(ABC, Generic[T]):
   ### Create
   def create(self, model: T) -> Optional[T]:
         """
-        Cria um novo registro no banco de dados.
+        cria novo registro no banco de dados
 
         Args:
-            model (T): Instância do modelo a ser criado.
+            model (T): instãncia do modelo a ser criado
 
         Returns:
-            Optional[T]: Instância criada com ID gerado ou None em caso de erro.
+            Optional[T]: instãncia criada com id gerado ou none em caso de erro
         """
         try:
             data = self.to_dict(model)
@@ -47,7 +47,7 @@ class BaseDAO(ABC, Generic[T]):
                 return self.to_model(response.data[0])
             return None
         except Exception as e:
-            print(f"Erro ao criar registro: {e}")
+            print(f"erro ao criar registro: {e}")
             return None
 
   ### Read
@@ -58,10 +58,10 @@ class BaseDAO(ABC, Generic[T]):
         return self.to_model(response.data[0])
       return None
     except Exception as e:
-      print(f'Erro ao buscar registro: {e}')
+      print(f'erro ao buscar registro: {e}')
       return None
 
-  # Retorna todos os valores de uma tabela
+  # retorna todos os registros da tabela
   def read_all(self) -> List[T]:
     try:
       response = self._client.table(self._table_name).select('*').execute()
@@ -88,7 +88,7 @@ class BaseDAO(ABC, Generic[T]):
     try:
         data = self.to_dict(model)
         
-        # Remove campos imutáveis e chave primária dos dados a serem atualizados
+        # remove campos imutáveis e chave primária dos dados
         data.pop(pk, None)
         data.pop('created_at', None)
 
@@ -98,24 +98,24 @@ class BaseDAO(ABC, Generic[T]):
             return self.to_model(response.data[0])
         return None
     except Exception as e:
-        print(f"Erro ao atualizar registro: {e}")
+        print(f"erro ao atualizar registro: {e}")
         return None
 
   ### Delete
   def delete(self, pk: str, value) -> bool:
       """
-      Deleta um registro pela chave primária.
+      deleta um registro pela chave primária
 
       Args:
-          pk (str): Nome da coluna chave primária (ex: 'cpf')
-          value: Valor da chave primária do registro a deletar.
+          pk (str): nome da coluna chave primária (ex: 'cpf')
+          value: valor da chave primária do registro a deletar
 
       Returns:
-          bool: True se deletado com sucesso, False caso contrário.
+          bool: true se deletado com sucesso, false caso contrário
       """
       try:
           response = self._client.table(self._table_name).delete().eq(pk, value).execute()
           return True
       except Exception as e:
-          print(f"Erro ao deletar registro: {e}")
+          print(f"erro ao deletar registro: {e}")
           return False

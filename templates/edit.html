@@ -2,7 +2,7 @@
 <html>
 <head>
     <title>Editar Funcionário</title>
-    <!-- Link para CSS -->
+    <!-- link para arquivo css -->
     <link rel="stylesheet" href="{{ url_for('static', filename='edit.css') }}">
 </head>
 <body>
@@ -12,24 +12,24 @@
         
         <hr>
         
-        <!-- Formulário-->
+        <!-- formulário de edição -->
         <form method="POST" action="{{ url_for('update', pk=funcionario.cpf) }}">
             
-            <!-- Campo 1: Nome -->
+            <!-- campo: entrada de nome -->
             <div class="form-group">
                 <label>Nome:</label>
                 <input type="text" name="pnome" 
                        value="{{ funcionario.pnome }}" required>
             </div>
             
-            <!-- Campo 2: Sobrenome -->
+            <!-- campo: entrada de sobrenome -->
             <div class="form-group">
                 <label>Sobrenome:</label>
                 <input type="text" name="unome" 
                        value="{{ funcionario.unome }}" required>
             </div>
             
-            <!-- Campo 3: CPF (somente leitura) -->
+            <!-- campo: cpf (somente leitura) -->
             <div class="form-group">
                 <label>CPF:</label>
                 <input type="text" 
@@ -37,7 +37,7 @@
                 <small class="text-muted">CPF não pode ser alterado</small>
             </div>
             
-            <!-- Campo 4: Salário -->
+            <!-- campo: entrada de salário -->
             <div class="form-group">
                 <label>Salário (R$):</label>
                 <input type="text" name="salario" 
@@ -47,7 +47,7 @@
                 <small class="texto-ajuda">Use ponto para casas decimais (ex: 20000.00)</small>
             </div>
             
-            <!-- Campo 5: Data de Nascimento -->
+            <!-- campo: entrada de data de nascimento -->
             <div class="form-group">
                 <label>Data de Nascimento:</label>
                 {% if funcionario.data_nasc is string %}
@@ -59,14 +59,14 @@
                        value="{{ data_nasc_value }}" required>
             </div>
             
-            <!-- Campo 6: Endereço -->
+            <!-- campo: entrada de endereço -->
             <div class="form-group">
                 <label>Endereço:</label>
                 <input type="text" name="endereco" 
                        value="{{ funcionario.endereco }}" required>
             </div>
             
-            <!-- Campo 7: Sexo (dropdown simples) -->
+            <!-- campo: seleção de sexo -->
             <div class="form-group">
                 <label>Sexo:</label>
                 <select name="sexo" required>

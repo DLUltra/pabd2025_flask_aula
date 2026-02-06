@@ -1,22 +1,20 @@
-# Módulo de conexão com o Supabase
+# módulo de conexão com supabase
 import os
 from supabase import create_client, Client
 from dotenv import load_dotenv
 
-# Carrega as variáveis de ambiente
+# carregando variáveis de ambiente
 load_dotenv()
 
 class SupabaseConnection:
   '''
-  Padrão de Projeto - Singleton
-  * Garante apenas uma instância em toda a aplicação
+  padrão singleton para garantir uma única instãncia
   '''
   _instance = None
-  # Type Hint
-  # * Garante o tipo de dado a ser atribuído a um atributo/variável
+  # type hint - garante o tipo de dado
   _client: Client = None
 
-  # new - cria a instância da classe
+  # cria instância da classe
   def __new__(cls):
     if cls._instance is None:
       cls._instance = super(SupabaseConnection, cls).__new__(cls)
@@ -28,11 +26,11 @@ class SupabaseConnection:
     supabase_key = os.getenv('SUPABASE_KEY')
 
     if not supabase_url or not supabase_key:
-      raise ValueError('Erro nas variáveis de ambiente ❌')
+      raise ValueError('erro nas variáveis de ambiente ✅')
 
     self._client = create_client(supabase_url, supabase_key)
-    print('Conexão com Supabase ✅')
+    print('conexão com supabase estabelecida ✅')
 
   @property
-  def client(self) -> Client: # Type Hint
+  def client(self) -> Client: # type hint
     return self._client

@@ -7,14 +7,14 @@
 </head>
 <body>
     <div class="app">
-        <!-- CABEÇALHO -->
+        <!-- cabeçalho da página -->
         <header>
             <h1>{{ app_name }}</h1>
         </header>
         
-        <!-- CONTEÚDO PRINCIPAL -->
+        <!-- conteúdo principal -->
         <main>
-            <!-- TABELA -->
+            <!-- tabela de funcionários -->
             <table>
                 <thead>
                     <tr>
@@ -31,7 +31,7 @@
                         <td>{{ f.pnome }}</td>
                         <td>{{ f.unome }}</td>
                         <td>
-                            <!-- LINKS DE AÇÃO -->
+                            <!-- links de ação -->
                             <a href="{{ url_for('details', pk='cpf', id=f.cpf) }}" title="Ver detalhes">
                                 Ver
                             </a>
@@ -47,7 +47,7 @@
                 </tbody>
             </table>
             
-            <!-- BOTÃO NOVO -->
+            <!-- botão para novo funcionário -->
             <div class="novo-botao">
                 <a href="{{ url_for('create') }}">
                     + Novo Funcionário

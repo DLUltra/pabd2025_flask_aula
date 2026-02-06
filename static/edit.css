@@ -1,4 +1,4 @@
-/* CSS PARA EDIÇÃO - DESIGN MODERNO */
+/* css para edição - design moderno */
 * {
     margin: 0;
     padding: 0;
@@ -42,7 +42,7 @@ hr {
     margin: 30px 0;
 }
 
-/* ESTILOS DE FORMULÁRIO */
+/* estilos de formulário */
 .form-group {
     margin-bottom: 25px;
 }
@@ -90,7 +90,7 @@ input[readonly] {
     display: block;
 }
 
-/* BOTÕES */
+/* botões */
 .btn-group {
     margin-top: 35px;
     display: flex;
@@ -135,7 +135,7 @@ button[type="submit"]:hover {
     transform: translateY(-2px);
 }
 
-/* INFO ADICIONAL */
+/* info adicional */
 .info {
     margin-top: 40px;
     padding: 20px;

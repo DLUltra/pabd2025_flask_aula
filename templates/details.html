@@ -3,9 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <title>Detalhes do Funcionário</title>
-    <!-- ESTILIZAÇÃO -->
+    <!-- estilização da página -->
     <link rel="stylesheet" href="{{ url_for('static', filename='details.css') }}">
-    <!-- ÍCONES -->
+    <!-- ícones do font awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
@@ -13,19 +13,19 @@
         <header class="cabecalho">
             <h1>Detalhes do Funcionário</h1>
         </header>
-        <!-- TODO O CONTEUDO DO SITE -->
+        <!-- todo o conteúdo do site -->
         <main class="conteudo">
             <h2 class="titulo-pagina">Informações do Funcionário</h2>
-            <!-- O CARTÃO -->
+            <!-- exibição do cartão -->
             <div class="cartao">
-               <!-- CABEÇALHO -->
+               <!-- cabeçalho do cartão -->
                 <div class="cabecalho-cartao">
                     <h2>{{ funcionario.pnome }} {{ funcionario.unome }}</h2>
                 </div>
-                <!-- CORPO DO CARTÃO COM AS INFORMAÇÕES -->
+                <!-- corpo do cartão com as informações -->
                 <div class="corpo-cartao">
                     <div class="info-container">
-                        <!-- COLUNA 1: INFORMAÇÕES PESSOAIS -->
+                        <!-- coluna: informações pessoais -->
                         <div class="info-coluna">
                             <h5>Informações Pessoais</h5>
                             
@@ -56,7 +56,7 @@
                             </div>
                         </div>
                         
-                        <!-- COLUNA 2: INFORMAÇÕES PROFISSIONAIS -->
+                        <!-- coluna: informações profissionais -->
                         <div class="info-coluna">
                             <h5>Informações Profissionais</h5>
                             

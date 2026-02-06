@@ -17,31 +17,31 @@ class FuncionarioDAO(BaseDAO[Funcionario]):
 
   # Função auxiliar para obter horário brasileiro
   def _get_datetime_br(self):
-    """Retorna o datetime atual no fuso horário de São Paulo"""
+    """retorna o datetime atual no fuso horário de são paulo"""
     tz_br = timezone(timedelta(hours=-3))  # UTC-3 (Brasília)
     return datetime.now(tz_br).replace(tzinfo=None)
 
-  # Override create para adicionar created_at automaticamente
+  # sobrescreve método create para adicionar created_at automaticamente
   def create(self, model: Funcionario) -> Optional[Funcionario]:
-    """Cria um novo funcionário com data de criação automaticamente"""
+    """cria um novo funcionário com data de criação automática"""
     model._created_at = self._get_datetime_br()
     return super().create(model)
 
-  # Override update para adicionar updated_at automaticamente
+  # sobrescreve método update para adicionar updated_at automaticamente
   def update(self, pk: str, value, model: Funcionario) -> Optional[Funcionario]:
-    """Atualiza um funcionário com data de atualização automaticamente"""
+    """atualiza um funcionário com data de atualização automática"""
     model._updated_at = self._get_datetime_br()
     return super().update(pk, value, model)
 
-  # Métodos específicos para Funcionario (usando CPF como chave primária)
+  # métodos específicos para funcionário (usando cpf como chave primária)
   def read_by_cpf(self, cpf: str) -> Optional[Funcionario]:
-    """Busca um funcionário pelo CPF"""
+    """busca um funcionário pelo cpf"""
     return self.read('cpf', cpf)
 
   def update_by_cpf(self, cpf: str, funcionario: Funcionario) -> Optional[Funcionario]:
-    """Atualiza um funcionário pelo CPF"""
+    """atualiza um funcionário pelo cpf"""
     return self.update('cpf', cpf, funcionario)
 
   def delete_by_cpf(self, cpf: str) -> bool:
-    """Deleta um funcionário pelo CPF"""
+    """deleta um funcionário pelo cpf"""
     return self.delete('cpf', cpf)

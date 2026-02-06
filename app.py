@@ -1,26 +1,26 @@
-#Importação das bibliotecas/dependencias que precisa no app.py
+# importação das bibliotecas necessárias
 from flask import Flask, render_template, redirect, request, url_for
 from datetime import datetime
 from config.database import SupabaseConnection
-#importando de arquivos .py
+# importando dos arquivos de modelo e dao
 from dao.funcionario_dao import FuncionarioDAO
 from models.funcionario import Funcionario
 
 app = Flask(__name__)
 
 
-#se conectando ao supabase
+# conectando ao supabase
 client = SupabaseConnection().client
 
-#Caminho do index
+# rota da página inicial
 @app.route("/")
 def index():
     return render_template("index.html", title="Empresa", app_name="Controle & Gestão de Funcionarios", funcionarios=funcionario_dao.read_all())
 
-# Criando DAO para acessar a tabela funcionario
+# instanciando o dao de funcionário
 funcionario_dao = FuncionarioDAO(client)
 
-# Filtro personalizado para formatar CPF
+# filtro customizado para formatação de cpf
 @app.template_filter('format_cpf')
 def format_cpf(cpf):
     """Formata CPF no padrão XXX.XXX.XXX-XX"""
@@ -28,7 +28,7 @@ def format_cpf(cpf):
         return cpf
     return f"{cpf[:3]}.{cpf[3:6]}.{cpf[6:9]}-{cpf[9:11]}"
 
-# Filtro personalizado para formatar data/hora em português
+# filtro customizado para formatação de data/hora
 @app.template_filter('format_datetime_br')
 def format_datetime_br(value):
     """Formata datetime para o padrão brasileiro DD/MM/YYYY HH:MM:SS"""
@@ -36,7 +36,7 @@ def format_datetime_br(value):
         return ""
     if isinstance(value, str):
         try:
-            # Se for string ISO, converte para datetime
+            # convertendo string iso para datetime
             value = datetime.fromisoformat(value.replace('Z', '+00:00'))
         except:
             return value
@@ -44,7 +44,7 @@ def format_datetime_br(value):
         return value.strftime('%d/%m/%Y %H:%M:%S')
     return value
 
-# Filtro personalizado para formatar apenas data em português
+# filtro customizado para formatação de data
 @app.template_filter('format_date_br')
 def format_date_br(value):
     """Formata data para o padrão brasileiro DD/MM/YYYY"""
@@ -52,7 +52,7 @@ def format_date_br(value):
         return ""
     if isinstance(value, str):
         try:
-            # Se for string ISO, converte para datetime
+            # convertendo string iso para datetime
             value = datetime.fromisoformat(value.replace('Z', '+00:00'))
         except:
             return value
@@ -65,13 +65,13 @@ def details(pk, id):
     funcionario = funcionario_dao.read(pk, id)
     return render_template("details.html", funcionario=funcionario, datetime=datetime)
 
-# Rota para CRIAR novo funcionário
+# rota para criação de novo funcionário
 @app.route('/funcionario/novo', methods=['GET', 'POST'])
 def create():
     try:
         if request.method == "POST":
-            # 1. Criar objeto novo
-            # Converter salário aceita tanto ponto quanto vírgula como separador decimal
+            # criar novo objeto funcionário
+            # aceita ponto ou vírgula como decimal
             salario_str = request.form.get("salario", "1518.01")
             salario_str = salario_str.replace(',', '.')
             
@@ -83,7 +83,7 @@ def create():
                 _salario = float(salario_str),
             )
             
-            # 2. Atualizar no banco
+            # atualizar no banco de dados
             resultado = funcionario_dao.create(funcionario_novo)
             
             if resultado:
@@ -95,34 +95,34 @@ def create():
     
     return render_template('create.html', datetime=datetime)
 
-### Verifica se rota é GET ou POST para atualizar funcionário
+# rota para atualização de funcionário (get ou post)
 @app.route('/funcionario/edit/<string:pk>', methods=['GET', 'POST'])
 def update(pk):
     if request.method == 'POST':
         try:
-            # 1. Pegar dados do formulário
+            # obter dados do formulário
             dados = request.form
             
-            # 2. Buscar funcionário atual
+            # buscar funcionário atual no banco
             funcionario_atual = funcionario_dao.read('cpf', pk)
             if not funcionario_atual:
                 return "Funcionário não encontrado", 404
             
-            # 3. Converter tipos
+            # converter tipos de dados
             from datetime import datetime as dt
             
-            # Data de nascimento
+            # data de nascimento
             data_nasc = funcionario_atual.data_nasc
             if dados.get('data_nasc'):
                 try:
                     data_nasc = dt.strptime(dados['data_nasc'], '%Y-%m-%d').date()
                 except:
-                    pass  # Mantém a atual se der erro
+                    pass  # mantém a atual se der erro
             
-            # Salário
+            # salário
             salario = funcionario_atual.salario
             try:
-                # Aceita tanto ponto quanto vírgula como separador decimal
+                # aceita ponto ou vírgula como separador decimal
                 salario_str = dados.get('salario', salario)
                 if isinstance(salario_str, str):
                     salario_str = salario_str.replace(',', '.')
@@ -130,7 +130,7 @@ def update(pk):
             except:
                 pass
             
-            # Número departamento
+            # número departamento
             num_depto = dados.get('numero_departamento')
             numero_departamento = None
             if num_depto and num_depto.strip():
@@ -139,7 +139,7 @@ def update(pk):
                 except:
                     numero_departamento = funcionario_atual.numero_departamento
             
-            # CPF supervisor
+            # cpf supervisor
             cpf_supervisor = dados.get('cpf_supervisor')
             if cpf_supervisor and cpf_supervisor.strip():
                 cpf_supervisor = cpf_supervisor.replace('.', '').replace('-', '')
@@ -148,7 +148,7 @@ def update(pk):
             else:
                 cpf_supervisor = None
             
-            # 4. Criar objeto atualizado
+            # criar objeto com dados atualizados
             funcionario_atualizado = Funcionario(
                 _cpf=pk,
                 _pnome=dados.get('pnome', funcionario_atual.pnome),
@@ -164,7 +164,7 @@ def update(pk):
             
             print(f"Criado objeto: {funcionario_atualizado}")
             
-            # 5. Atualizar no banco
+            # atualizar no banco de dados
             resultado = funcionario_dao.update('cpf', pk, funcionario_atualizado)
             
             if resultado:
@@ -173,12 +173,12 @@ def update(pk):
                 return "Erro ao atualizar"
                 
         except Exception as e:
-            # Mostra erro simples sem traceback
+            # mostrar erro simples sem traceback
             import traceback
-            print(traceback.format_exc())  # Esta linha causa erro se não importar
+            print(traceback.format_exc())  # mostra stack trace completo
             return f"Erro: {str(e)}", 500
     
-    # GET: Mostrar formulário
+    # exibir formulário de edição
     funcionario = funcionario_dao.read('cpf', pk)
     
     if not funcionario:
@@ -186,14 +186,14 @@ def update(pk):
     
     return render_template('edit.html', funcionario=funcionario, datetime=datetime)
 
-### Verifica se rota é GET ou POST para remover funcionário
+# rota para exclusão de funcionário (get ou post)
 @app.route('/funcionario/delete/<string:pk>', methods=['GET', 'POST'])
 def delete(pk):
-    # Se for POST (ou seja, envio do formulário de confirmação)
+    # processa a exclusão se for post
     if request.method == 'POST':
         try:
-            # 1. Tenta excluir do banco de dados
-            sucesso = funcionario_dao.delete('cpf', pk) # AQUI ACONTECE A MÁGICA - EXCLUI FUNCIONÁRIO
+            # tentar excluir do banco de dados
+            sucesso = funcionario_dao.delete('cpf', pk) # executa a exclusão
             
             if sucesso:
                 return redirect(url_for('index'))
@@ -203,7 +203,7 @@ def delete(pk):
         except Exception as e:
             return f"Erro: {str(e)}", 500
     
-    # Se for GET, apenas exibe o funcionário a ser removido
+    # exibir funcionário a ser removido
     funcionario = funcionario_dao.read('cpf', pk)
     
     if not funcionario:
