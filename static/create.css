@@ -1,8 +1,12 @@
-* { margin: 0; padding: 0; box-sizing: border-box; }
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
 
 body {
-    font-family: Arial, sans-serif;
-    background: #f8f9fa;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
     padding: 40px 20px;
     display: flex;
     justify-content: center;
@@ -12,9 +16,9 @@ body {
 
 .container {
     background: white;
-    padding: 40px;
-    border-radius: 8px;
-    box-shadow: 0 3px 15px rgba(0,0,0,0.08);
+    padding: 50px;
+    border-radius: 16px;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.2);
     width: 100%;
     max-width: 500px;
 }
@@ -22,8 +26,9 @@ body {
 .titulo {
     color: #2c3e50;
     text-align: center;
-    margin-bottom: 30px;
-    font-size: 1.5rem;
+    margin-bottom: 40px;
+    font-size: 1.8rem;
+    font-weight: 700;
 }
 
 .grupo-campo {
@@ -32,67 +37,81 @@ body {
 
 .grupo-campo label {
     display: block;
-    margin-bottom: 8px;
+    margin-bottom: 10px;
     font-weight: 600;
-    color: #444;
+    color: #2c3e50;
+    font-size: 0.95rem;
 }
 
 .grupo-campo input {
     width: 100%;
-    padding: 12px 15px;
-    border: 1px solid #ddd;
-    border-radius: 4px;
+    padding: 14px 16px;
+    border: 2px solid #e0e6ed;
+    border-radius: 8px;
     font-size: 1rem;
-    background: #fafafa;
+    background: #f8f9fc;
+    transition: all 0.3s ease;
+    color: #2c3e50;
+}
+
+.grupo-campo input::placeholder {
+    color: #b0bcc4;
 }
 
 .grupo-campo input:focus {
     outline: none;
-    border-color: #3498db;
+    border-color: #667eea;
     background: white;
+    box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
 }
 
 .grupo-botoes {
     display: flex;
     gap: 15px;
-    margin-top: 35px;
-    padding-top: 20px;
-    border-top: 1px solid #eee;
+    margin-top: 40px;
+    padding-top: 30px;
+    border-top: 1px solid #e0e6ed;
 }
 
 .botao {
-    padding: 12px 25px;
+    padding: 14px 28px;
     border: none;
-    border-radius: 4px;
+    border-radius: 8px;
     font-weight: 600;
     cursor: pointer;
     text-decoration: none;
     text-align: center;
     flex: 1;
-    transition: background 0.2s;
+    transition: all 0.3s ease;
+    font-size: 0.95rem;
 }
 
 .botao-primario {
-    background: #27ae60;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
     color: white;
+    box-shadow: 0 6px 20px rgba(102, 126, 234, 0.3);
 }
 
 .botao-primario:hover {
-    background: #219653;
+    transform: translateY(-2px);
+    box-shadow: 0 10px 30px rgba(102, 126, 234, 0.4);
 }
 
 .botao-secundario {
-    background: #95a5a6;
-    color: white;
+    background: #e0e6ed;
+    color: #2c3e50;
+    border: 2px solid #cdd5e0;
 }
 
 .botao-secundario:hover {
-    background: #7f8c8d;
+    background: #d0d8e5;
+    border-color: #bcc5d8;
+    transform: translateY(-2px);
 }
 
 .texto-ajuda {
-    font-size: 0.85rem;
-    color: #666;
-    margin-top: 5px;
+    font-size: 0.8rem;
+    color: #7f8c8d;
+    margin-top: 6px;
     display: block;
 }

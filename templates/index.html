@@ -33,13 +33,13 @@
                         <td>
                             <!-- LINKS DE AÇÃO -->
                             <a href="{{ url_for('details', pk='cpf', id=f.cpf) }}" title="Ver detalhes">
-                                👁️
+                                Ver
                             </a>
                             <a href="{{ url_for('update', pk=f.cpf) }}" title="Editar">
-                                ✏️
+                                Editar
                             </a>
                             <a href="{{ url_for('delete', pk=f.cpf) }}" title="Apagar">
-                                🗑️
+                                Apagar
                             </a>
                         </td>
                     </tr>
@@ -50,7 +50,7 @@
             <!-- BOTÃO NOVO -->
             <div class="novo-botao">
                 <a href="{{ url_for('create') }}">
-                    ➕ Novo Funcionário
+                    + Novo Funcionário
                 </a>
             </div>
         </main>

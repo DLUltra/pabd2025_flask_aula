@@ -15,7 +15,7 @@ client = SupabaseConnection().client
 #Caminho do index
 @app.route("/")
 def index():
-    return render_template("index.html", title="CRUD LEGAL", app_name="TABELA DE USER", funcionarios=funcionario_dao.read_all())
+    return render_template("index.html", title="Empresa", app_name="Controle & Gestão de Funcionarios", funcionarios=funcionario_dao.read_all())
 
 # Criando DAO para acessar a tabela funcionario
 funcionario_dao = FuncionarioDAO(client)

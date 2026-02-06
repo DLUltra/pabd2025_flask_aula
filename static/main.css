@@ -1,28 +1,40 @@
-/* RESET BÁSICO */
+/* RESET E CONFIGURAÇÕES GLOBAIS */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
 body {
-    margin: 20px;
-    font-family: Arial, sans-serif;
-    background: #f8f9fa;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+    min-height: 100vh;
+    padding: 20px;
+    color: #2c3e50;
 }
 
 /* CONTAINER PRINCIPAL */
 .app {
-    max-width: 1000px;
+    max-width: 1200px;
     margin: 0 auto;
 }
 
 /* CABEÇALHO */
 header {
-    background: #0066cc;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
     color: white;
-    padding: 15px;
-    margin-bottom: 20px;
-    border-radius: 5px;
+    padding: 35px;
+    margin-bottom: 30px;
+    border-radius: 12px;
+    box-shadow: 0 8px 32px rgba(102, 126, 234, 0.3);
+    text-align: center;
 }
 
 header h1 {
     margin: 0;
-    text-align: center;
+    font-size: 2.5rem;
+    font-weight: 700;
+    letter-spacing: 0.5px;
 }
 
 /* TABELA */
@@ -30,55 +42,106 @@ table {
     width: 100%;
     border-collapse: collapse;
     background: white;
-    margin-bottom: 20px;
-    box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+    margin-bottom: 30px;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
 }
 
 /* CABEÇALHO DA TABELA */
 thead {
-    background: #333;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
     color: white;
 }
 
-th, td {
-    padding: 12px;
+th {
+    padding: 18px;
     text-align: left;
-    border-bottom: 1px solid #ddd;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+}
+
+td {
+    padding: 16px 18px;
+    border-bottom: 1px solid #e8ecf1;
 }
 
 /* LINHAS DA TABELA */
+tbody tr {
+    transition: all 0.3s ease;
+}
+
 tbody tr:hover {
-    background: #f5f5f5;
+    background: #f8f9ff;
+    box-shadow: inset 0 0 10px rgba(102, 126, 234, 0.08);
 }
 
 /* LINKS DE AÇÃO */
 td a {
     text-decoration: none;
-    margin-right: 10px;
-    font-size: 18px;
-    padding: 5px;
-    border-radius: 3px;
+    margin-right: 8px;
+    font-size: 0.85rem;
+    padding: 8px 14px;
+    border-radius: 6px;
+    display: inline-block;
+    transition: all 0.3s ease;
+    font-weight: 500;
 }
 
 /* CORES DOS LINKS DE AÇÃO */
-td a:nth-child(1) { color: #0066cc; } /* Visualizar - Azul */
-td a:nth-child(2) { color: #28a745; } /* Editar - Verde */
-td a:nth-child(3) { color: #dc3545; } /* Apagar - Vermelho */
+td a:nth-child(1) {
+    color: white;
+    background: #3498db;
+}
+
+td a:nth-child(1):hover {
+    background: #2980b9;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(52, 152, 219, 0.3);
+}
+
+td a:nth-child(2) {
+    color: white;
+    background: #27ae60;
+}
+
+td a:nth-child(2):hover {
+    background: #229954;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(39, 174, 96, 0.3);
+}
+
+td a:nth-child(3) {
+    color: white;
+    background: #e74c3c;
+}
+
+td a:nth-child(3):hover {
+    background: #c0392b;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(231, 76, 60, 0.3);
+}
 
 /* BOTÃO NOVO FUNCIONÁRIO */
 .novo-botao {
     text-align: right;
+    margin-bottom: 20px;
 }
 
 .novo-botao a {
     display: inline-block;
-    background: #28a745;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
     color: white;
-    padding: 10px 20px;
+    padding: 14px 32px;
     text-decoration: none;
-    border-radius: 5px;
+    border-radius: 8px;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    transition: all 0.3s ease;
+    box-shadow: 0 6px 20px rgba(102, 126, 234, 0.3);
 }
 
 .novo-botao a:hover {
-    background: #218838;
+    transform: translateY(-3px);
+    box-shadow: 0 10px 30px rgba(102, 126, 234, 0.4);
 }

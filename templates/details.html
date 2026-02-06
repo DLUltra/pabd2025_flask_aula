@@ -20,7 +20,7 @@
             <div class="cartao">
                <!-- CABEÇALHO -->
                 <div class="cabecalho-cartao">
-                    <h2><i class="fas fa-user"></i> {{ funcionario.pnome }} {{ funcionario.unome }}</h2>
+                    <h2>{{ funcionario.pnome }} {{ funcionario.unome }}</h2>
                 </div>
                 <!-- CORPO DO CARTÃO COM AS INFORMAÇÕES -->
                 <div class="corpo-cartao">
@@ -41,11 +41,11 @@
                             <div class="info-item">
                                 <strong>Sexo:</strong>
                                 {% if funcionario.sexo|lower == 'm' %}
-                                <i class="fas fa-mars" title="Masculino"></i> Masculino
+                                Masculino
                                 {% elif funcionario.sexo|lower == 'f' %}
-                                <i class="fas fa-venus" title="Feminino"></i> Feminino
+                                Feminino
                                 {% elif funcionario.sexo|lower == 'o' %}
-                                <i class="fas fa-genderless" title="Outro"></i> Outro
+                                Outro
                                 {% else %}
                                 {{ funcionario.sexo }}
                                 {% endif %}
@@ -94,13 +94,13 @@
                 
                 <div class="botoes">
                     <a href="{{ url_for('index') }}" class="botao botao-voltar">
-                        <i class="fas fa-arrow-left"></i> Voltar à Lista
+                        Voltar à Lista
                     </a>
                     <a href="{{ url_for('update', pk=funcionario.cpf) }}" class="botao botao-editar">
-                        <i class="fas fa-edit"></i> Editar
+                        Editar
                     </a>
                     <a href="{{ url_for('delete', pk=funcionario.cpf) }}" class="botao botao-deletar">
-                        <i class="fas fa-trash"></i> Deletar
+                        Deletar
                     </a>
                 </div>
             </div>
