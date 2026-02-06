@@ -1,4 +1,3 @@
-
 #Importação das bibliotecas/dependencias que precisa no app.py
 from flask import Flask, render_template, redirect, request, url_for
 from datetime import datetime
@@ -54,7 +53,7 @@ def create():
             if resultado:
                 return redirect(url_for('index'))
             else:
-                return "Erro ao atualizar", 500
+                return "Erro ao atualizar"
     except:
         pass
     
@@ -131,7 +130,7 @@ def update(pk):
             if resultado:
                 return redirect(url_for('index'))
             else:
-                return "Erro ao atualizar", 500
+                return "Erro ao atualizar"
                 
         except Exception as e:
             # Mostra erro simples sem traceback
